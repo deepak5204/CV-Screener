@@ -68,6 +68,7 @@ function cvIterator(profiles){
 }
 
 const candidates = cvIterator(data);
+nextCV();
 
 // Button listner for next button
 const next = document.getElementById('next');
@@ -77,10 +78,9 @@ next.addEventListener('click',nextCV);
 function nextCV(){
     const currentCandidate = candidates.next().value;
     let image = document.getElementById('image');
-    console.log(image);
-    
-    image.innerHTML = `<img src='${currentCandidate.image}'>`;
     let profiles = document.getElementById('profiles');
+    if(currentCandidate != undefined){
+    image.innerHTML = `<img src='${currentCandidate.image}'>`;
     console.log(profiles);
     
     profiles.innerHTML = `
@@ -92,4 +92,9 @@ function nextCV(){
                         <li class="list-group-item">${currentCandidate.framework} framework </li>
                         </ul>
   `
+}
+else{
+    alert("Application end.");
+    window.location.reload();
+}
 }
